@@ -1,3 +1,4 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :name, :picture, :hometown, :current_city, :age, :bio
+  # send back all attributes and projects
+  attributes :id, :name, :picture, :hometown, :current_city, :age, :bio, :projects
 end

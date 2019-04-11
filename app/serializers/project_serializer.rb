@@ -1,3 +1,4 @@
 class ProjectSerializer < ActiveModel::Serializer
-  attributes :id, :name, :location, :date, :story, :start_image, :end_image, :completed, :time
+    # send back all attributes and users
+  attributes :id, :name, :location, :date, :story, :start_image, :end_image, :completed, :time, :users
 end
