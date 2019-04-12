@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  skip_before_action :authorized, only: [:create]
 
   def index
     @users = User.all
@@ -10,13 +11,17 @@ class UsersController < ApplicationController
     render json: @user
   end
 
+
   def create
-    @user = User.create(user_params)
-    if @user.valid?
-      render json: {user: UserSerializer.new(@user)}, status: :created
-    else
-      render json: {error: 'failed to create user'}, status: :not_acceptable
-    end
+   @user = User.find_by(username: user_params[:username])
+   #User#authenticate comes from BCrypt
+   if @user && @user.authenticate(user_params[:password])
+    # encode token comes from ApplicationController
+    token = encode_token({ user_id: @user.id })
+    render json: { user: UserSerializer.new(@user), jwt: token }, status: :accepted
+   else
+    render json: { message: 'Invalid username or password' }, status: :unauthorized
+   end
   end
 
   private
