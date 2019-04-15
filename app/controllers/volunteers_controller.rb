@@ -11,13 +11,14 @@ class VolunteersController < ApplicationController
   end
 
   def create
-    @volunteer = Volunteer.create(volunteer_params)
+    # byebug
+    @volunteer = Volunteer.create({user_id: curr_user.id, project_id: params[:project_id], admin: false})
     render json: @volunteer
   end
 
   private
   def volunteer_params
-    params.require(:volunteer).permit(:name, :picture, :hometown, :current_city, :age, :bio)
+    params.require(:volunteer).permit(:user_id, :project_id, :admin)
   end
 
 end

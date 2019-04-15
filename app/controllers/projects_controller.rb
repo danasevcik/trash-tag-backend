@@ -12,7 +12,8 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.create(project_params)
-    render json: @project
+    @volunteer = Volunteer.create(user_id: curr_user.id, project_id: @project.id, admin: true)
+    render json: [@project, @volunteer]
   end
 
   def update
