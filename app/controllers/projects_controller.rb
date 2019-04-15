@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-skip_before_action :authorized, only: [:index]
+before_action :authorized
 
   def index
     @projects = Project.all
