@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :authorized, only: [:create, :get_user]
+  skip_before_action :authorized, only: [:create, :get_user, :find]
 
   def index
     @users = User.all
@@ -13,16 +13,26 @@ class UsersController < ApplicationController
 
 
   def create
-   @user = User.create(user_params)
-
-   if @user.valid?
-
-    token = encode_token({ user_id: @user.id })
-    render json: { user: {username: @user.username}, token: token }, status: :created
-   else
-    render json: { message: 'Invalid username or password' }, status: :not_acceptable
-   end
+    @user = User.create(user_params)
+    if @user.valid?
+      token = encode_token({ user_id: @user.id })
+      render json: { user: {username: @user.username}, token: token }, status: :created
+    else
+      render json: { message: 'Invalid username or password' }, status: :not_acceptable
+    end
   end
+
+  def find
+    @user = User.find_by(username: user_params[:username])
+    if !!@user
+      token = encode_token({ user_id: @user.id })
+      render json: { user: {username: @user.username}, token: token }, status: :found
+    else
+      render json: { message: 'Invalid username or password' }, status: :not_acceptable
+    end
+  end
+
+
 
   def get_user
     token = request.headers["authorization"]

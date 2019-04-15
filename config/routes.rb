@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :projects
   resources :volunteers
   post '/signup', to: 'users#create'
+  post '/login', to: 'users#find'
   get '/profile', to: 'users#profile'
   get "/get_user", to: "users#get_user"
 end

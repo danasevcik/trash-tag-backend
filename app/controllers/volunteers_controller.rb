@@ -12,7 +12,7 @@ class VolunteersController < ApplicationController
 
   def create
     # byebug
-    @volunteer = Volunteer.create({user_id: curr_user.id, project_id: params[:project_id], admin: false})
+    @volunteer = Volunteer.find_or_create_by({user_id: curr_user.id, project_id: params[:project_id], admin: false})
     render json: @volunteer
   end
 
