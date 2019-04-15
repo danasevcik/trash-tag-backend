@@ -6,12 +6,14 @@ class ApplicationController < ActionController::API
   end
 
   def auth_header
+    # byebug
     request.headers['Authorization']
   end
 
   def decoded_token
+    # byebug
     if auth_header
-      token = auth_header.split(' ')[1]
+      token = auth_header
       begin
         JWT.decode(token, "GG012819GG", true, algorithm: 'HS256')
       rescue JWT::DecodeError
@@ -20,7 +22,8 @@ class ApplicationController < ActionController::API
     end
   end
 
-  def current_user
+  def curr_user
+    # byebug
     if decoded_token
       user_id = decoded_token[0]['user_id']
       @user = User.find_by(id: user_id)
@@ -28,7 +31,7 @@ class ApplicationController < ActionController::API
   end
 
   def logged_in?
-    !!current_user
+    !!curr_user
   end
 
   def authorized

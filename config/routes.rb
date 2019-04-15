@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   resources :volunteers
   post '/signup', to: 'users#create'
   get '/profile', to: 'users#profile'
-
+  get "/get_user", to: "users#get_user"
 end
