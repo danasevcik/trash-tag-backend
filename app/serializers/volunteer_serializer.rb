@@ -1,3 +1,3 @@
 class VolunteerSerializer < ActiveModel::Serializer
-  attributes :id, :user_id, :project_id, :admin
+  attributes :id, :user_id, :project_id, :admin, :username
 end

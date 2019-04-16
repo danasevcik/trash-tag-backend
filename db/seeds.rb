@@ -13,7 +13,7 @@ Project.find_or_create_by(name: 'Beach Clean Up', location: 'Coney Island', date
 Project.find_or_create_by(name: 'Highway Clean Up', location: 'BQE', date: '2019-05-11', story: 'Stop throwing trash!', start_image: 'http://archive.commercialappeal.com/Services/image.ashx?domain=www.commercialappeal.com&file=gc_litter1_16975226_ver1.0_640_480.jpg&resize=', end_image: '', completed: false, time: '10:30')
 Project.find_or_create_by(name: 'Park Clean Up', location: 'Prospect Park', date: '2019-04-10', story: 'Lets beautify this park!', start_image: 'https://cbsnewyork.files.wordpress.com/2011/06/prospect-park.jpg?w=420', end_image: 'https://c8.alamy.com/comp/CYJRJ5/volunteers-help-to-clean-up-prospect-park-in-brooklyn-ny-after-hurricane-CYJRJ5.jpg', completed: true, time: '10:30')
 
-Volunteer.find_or_create_by(user_id: 1, project_id: 1, admin: true)
-Volunteer.find_or_create_by(user_id: 2, project_id: 2, admin: true)
-Volunteer.find_or_create_by(user_id: 1, project_id: 2, admin: false)
-Volunteer.find_or_create_by(user_id: 2, project_id: 1, admin: false)
+Volunteer.find_or_create_by(user_id: 1, project_id: 1, admin: true, username: "Brianna")
+Volunteer.find_or_create_by(user_id: 2, project_id: 2, admin: true, username: "Dana")
+Volunteer.find_or_create_by(user_id: 1, project_id: 2, admin: false, username: "Brianna")
+Volunteer.find_or_create_by(user_id: 2, project_id: 1, admin: false, username: "Dana")
