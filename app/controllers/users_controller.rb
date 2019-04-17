@@ -40,7 +40,7 @@ class UsersController < ApplicationController
     @user = User.find(id)
 
     if @user.valid?
-      render json: { user: {username: @user.username, user_id: @user.id, name: @user.name, picture: @user.picture, hometown: @user.hometown, current_city: @user.current_city, age: @user.age, bio: @user.bio}}
+      render json: { user: {username: @user.username, user_id: @user.id, name: @user.name, picture: @user.picture, hometown: @user.hometown, current_city: @user.current_city, age: @user.age, bio: @user.bio, projects: @user.projects.uniq}}
     end
   end
 
